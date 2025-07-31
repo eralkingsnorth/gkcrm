@@ -1,0 +1,243 @@
+{
+  "info": {
+    "name": "GKCRM Client API",
+    "description": "Complete API collection for managing clients and notes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Client with Notes",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here",
+            "description": "Replace with your actual API key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"lead_source\": \"Website\",\n  \"title\": \"Mr\",\n  \"forename\": \"John\",\n  \"surname\": \"Doe\",\n  \"date_of_birth\": \"1985-06-15\",\n  \"country_of_birth\": \"United Kingdom\",\n  \"marital_status\": \"married\",\n  \"email_address\": \"john.doe@example.com\",\n  \"mobile_number\": \"07123456789\",\n  \"home_phone\": \"01234567890\",\n  \"postcode\": \"SW1A 1AA\",\n  \"house_number\": \"10\",\n  \"address_line_1\": \"Downing Street\",\n  \"address_line_2\": \"Westminster\",\n  \"town_city\": \"London\",\n  \"county\": \"Greater London\",\n  \"country\": \"United Kingdom\",\n  \"other\": \"Additional information about the client\",\n  \"notes\": \"General notes about the client\",\n  \"client_status\": \"active\",\n  \"client_notes\": [\n    {\n      \"content\": \"Initial consultation completed. Client seems interested in debt management services.\"\n    },\n    {\n      \"content\": \"Documents requested: bank statements (last 3 months), payslips (last 3 months), and utility bills (last 6 months).\"\n    },\n    {\n      \"content\": \"Client mentioned they have multiple credit cards and personal loans. Total debt approximately £25,000.\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/clients",
+          "host": ["{{base_url}}"],
+          "path": ["api", "clients"]
+        },
+        "description": "Create a new client with multiple notes. This is the complete example with all possible fields."
+      }
+    },
+    {
+      "name": "Create Client (Minimal)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"forename\": \"Jane\",\n  \"surname\": \"Smith\",\n  \"email_address\": \"jane.smith@example.com\",\n  \"mobile_number\": \"07987654321\",\n  \"client_notes\": [\n    {\n      \"content\": \"Quick consultation - client needs debt advice\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/clients",
+          "host": ["{{base_url}}"],
+          "path": ["api", "clients"]
+        },
+        "description": "Create a client with only required fields and one note."
+      }
+    },
+    {
+      "name": "Create Client (No Notes)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"forename\": \"Bob\",\n  \"surname\": \"Wilson\",\n  \"email_address\": \"bob.wilson@example.com\",\n  \"mobile_number\": \"07555123456\",\n  \"title\": \"Mr\",\n  \"date_of_birth\": \"1990-03-20\",\n  \"address_line_1\": \"123 High Street\",\n  \"town_city\": \"Manchester\",\n  \"postcode\": \"M1 1AA\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/clients",
+          "host": ["{{base_url}}"],
+          "path": ["api", "clients"]
+        },
+        "description": "Create a client without any notes."
+      }
+    },
+    {
+      "name": "Get Client Notes",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/clients/1/notes",
+          "host": ["{{base_url}}"],
+          "path": ["api", "clients", "1", "notes"]
+        },
+        "description": "Get all notes for a specific client (replace '1' with actual client ID)."
+      }
+    },
+    {
+      "name": "Add Note to Client",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"Client called today to follow up on document submission. They mentioned they will send the remaining bank statements by Friday.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/clients/1/notes",
+          "host": ["{{base_url}}"],
+          "path": ["api", "clients", "1", "notes"]
+        },
+        "description": "Add a new note to an existing client (replace '1' with actual client ID)."
+      }
+    },
+    {
+      "name": "Delete Client Note",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/notes/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "notes", "1"]
+        },
+        "description": "Delete a specific note (replace '1' with actual note ID)."
+      }
+    },
+    {
+      "name": "Get All Clients",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/clients?per_page=10&page=1&sort_by=created_at&sort_order=desc",
+          "host": ["{{base_url}}"],
+          "path": ["api", "clients"],
+          "query": [
+            {
+              "key": "per_page",
+              "value": "10"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "sort_by",
+              "value": "created_at"
+            },
+            {
+              "key": "sort_order",
+              "value": "desc"
+            }
+          ]
+        },
+        "description": "Get all clients with pagination and sorting options."
+      }
+    },
+    {
+      "name": "Get Single Client",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "your-api-key-here"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/clients/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "clients", "1"]
+        },
+        "description": "Get a specific client with all their notes and documents (replace '1' with actual client ID)."
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "description": "Replace with your actual base URL"
+    }
+  ]
+} 
